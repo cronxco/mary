@@ -48,7 +48,7 @@ class Table extends Component
 
     ) {
         if ($this->selectable && $this->expandable) {
-            throw new Exception("You can not combine `expandable` with `selectable`.");
+            throw new Exception('You can not combine `expandable` with `selectable`.');
         }
 
         // Temp
@@ -62,7 +62,7 @@ class Table extends Component
         unset($this->headers);
 
         // Serialize
-        $this->uuid = "mary" . md5(serialize($this));
+        $this->uuid = 'mary' . md5(serialize($this));
 
         // Put them back
         $this->rowDecoration = $rowDecoration;
@@ -163,7 +163,7 @@ class Table extends Component
 
         // Replace tokens by actual row values
         $tokens->each(function (string $token) use ($row, &$link) {
-            $link = Str::of($link)->replace("{" . $token . "}", data_get($row, $token))->toString();
+            $link = Str::of($link)->replace('{' . $token . '}', data_get($row, $token))->toString();
         });
 
         return $link;
@@ -197,14 +197,14 @@ class Table extends Component
 
     public function selectableModifier(): string
     {
-        return is_string($this->getAllIds()[0] ?? null) ? "" : ".number";
+        return is_string($this->getAllIds()[0] ?? null) ? '' : '.number';
     }
 
     public function getKeyValue($row, $key): mixed
     {
         $value = data_get($row, $this->$key);
 
-        return is_numeric($value) && ! str($value)->startsWith('0') ? $value : "'$value'";
+        return is_numeric($value) && ! str($value)->startsWith('0') ? $value : "'{$value}'";
     }
 
     public function render(): View|Closure|string
@@ -236,7 +236,6 @@ class Table extends Component
                                     this.handleCheckAll()
                                 },
                                 toggleCheckAll(checked) {
-                                    this.$dispatch('row-selection-all', { selected: checked });
                                     checked ? this.pushIds() : this.removeIds()
                                 },
                                 toggleExpand(key) {
@@ -260,6 +259,15 @@ class Table extends Component
                              }"
                 >
                 <div class="{{ $containerClass }}" x-classes="overflow-x-auto">
+
+                    <!-- Pagination -->
+                    @if($withPagination)
+                        @if($perPage)
+                            <x-mary-pagination :rows="$rows" :per-page-values="$perPageValues" wire:model.live="{{ $perPage }}" />
+                        @else
+                            <x-mary-pagination :rows="$rows" :per-page-values="$perPageValues" />
+                        @endif
+                    @endif
                 <table
                         {{
                             $attributes
@@ -304,7 +312,7 @@ class Table extends Component
                                     @endphp
 
                                     <th
-                                        class="@if($isSortable($header)) cursor-pointer hover:bg-base-200 @endif {{ $header['class'] ?? ' ' }}"
+                                        class="@if($isSortable($header)) cursor-pointer hover:bg-base-200 text-base-content @endif {{ $header['class'] ?? 'text-base-content' }}"
 
                                         @if($sortBy && $isSortable($header))
                                             @click="$wire.set('sortBy', {column: '{{ $getSort($header)['column'] }}', direction: '{{ $getSort($header)['direction'] }}' })"

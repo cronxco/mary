@@ -15,9 +15,9 @@ class Menu extends Component
         public ?string $icon = null,
         public ?bool $separator = false,
         public ?bool $activateByRoute = false,
-        public ?string $activeBgColor = 'bg-base-300',
+        public ?string $activeBgColor = 'bg-primary dark:text-base-200',
     ) {
-        $this->uuid = "mary" . md5(serialize($this));
+        $this->uuid = 'mary' . md5(serialize($this));
     }
 
     public function render(): View|Closure|string

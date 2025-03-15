@@ -65,7 +65,7 @@ class MenuItem extends Component
         }
 
         return <<<'BLADE'
-                @aware(['activateByRoute' => false, 'activeBgColor' => 'bg-base-300'])
+                @aware(['activateByRoute' => false, 'activeBgColor' => 'bg-primary'])
 
                 <li>
                     <a

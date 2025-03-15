@@ -26,7 +26,7 @@ class Markdown extends Component
         public ?bool $omitError = false,
         public ?bool $firstErrorOnly = false,
     ) {
-        $this->uuid = "mary" . md5(serialize($this));
+        $this->uuid = 'mary' . md5(serialize($this));
         $this->uploadUrl = route('mary.upload', absolute: false);
     }
 
@@ -51,7 +51,7 @@ class Markdown extends Component
                 'heading', 'bold', 'italic', 'strikethrough', '|',
                 'code', 'quote', 'unordered-list', 'ordered-list', 'horizontal-rule', '|',
                 'link', 'upload-image', 'table', '|',
-                'preview', 'side-by-side'
+                'preview', 'side-by-side',
             ],
         ], $this->config);
 
@@ -60,7 +60,7 @@ class Markdown extends Component
         $table = "{ 'title' : 'Table', 'name' : 'myTable', 'action' : EasyMDE.drawTable, 'className' : 'fa fa-table' }";
 
         return str(json_encode($setup))
-            ->replace("\"", "'")
+            ->replace('"', "'")
             ->trim('{}')
             ->replace("'table'", $table)
             ->toString();

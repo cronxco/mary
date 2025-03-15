@@ -21,10 +21,10 @@ class Drawer extends Component
         public ?bool $closeOnEscape = false,
         public ?bool $withoutTrapFocus = false,
 
-        //Slots
+        // Slots
         public ?string $actions = null
     ) {
-        $this->uuid = "mary" . md5(serialize($this));
+        $this->uuid = 'mary' . md5(serialize($this));
     }
 
     public function id(): string

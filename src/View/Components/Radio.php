@@ -18,7 +18,7 @@ class Radio extends Component
         public ?string $optionValue = 'id',
         public ?string $optionLabel = 'name',
         public ?string $optionHint = 'hint',
-        public Collection|array $options = new Collection(),
+        public Collection|array $options = new Collection,
         public ?bool $inline = false,
 
         // Validations
@@ -27,7 +27,7 @@ class Radio extends Component
         public ?bool $omitError = false,
         public ?bool $firstErrorOnly = false,
     ) {
-        $this->uuid = "mary" . md5(serialize($this));
+        $this->uuid = 'mary' . md5(serialize($this));
     }
 
     public function modelName(): ?string

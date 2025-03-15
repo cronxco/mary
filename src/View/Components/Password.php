@@ -38,16 +38,16 @@ class Password extends Component
         public ?bool $omitError = false,
         public ?bool $firstErrorOnly = false,
     ) {
-        $this->uuid = "mary" . md5(serialize($this));
+        $this->uuid = 'mary' . md5(serialize($this));
 
         // Cannot use a left icon when password toggle should be shown on the left side.
         if (($this->icon && ! $this->right) && ! $this->onlyPassword) {
-            throw new Exception("Cannot use `icon` without providing `right` or `onlyPassword`.");
+            throw new Exception('Cannot use `icon` without providing `right` or `onlyPassword`.');
         }
 
         // Cannot use a right icon when password toggle should be shown on the right side.
         if (($this->iconRight && $this->right) && ! $this->onlyPassword) {
-            throw new Exception("Cannot use `iconRight` when providing `right` and not providing `onlyPassword`.");
+            throw new Exception('Cannot use `iconRight` when providing `right` and not providing `onlyPassword`.');
         }
     }
 

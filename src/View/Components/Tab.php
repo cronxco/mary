@@ -17,7 +17,7 @@ class Tab extends Component
         public ?string $icon = null,
         public bool $disabled = false,
     ) {
-        $this->uuid = "mary" . md5(serialize($this));
+        $this->uuid = 'mary' . md5(serialize($this));
     }
 
     public function tabLabel(string $label): string
@@ -29,7 +29,7 @@ class Tab extends Component
                 <x-mary-icon name='" . $this->icon . "' @class([
                 'me-2',
                 'whitespace-nowrap',
-                'text-base-content/30 cursor-not-allowed' => '$this->disabled'
+                'text-base-content/30 cursor-not-allowed' => '{$this->disabled}'
                 ])>
                     <x-slot:label>
                         {$fromLabel}
@@ -41,7 +41,7 @@ class Tab extends Component
         return Blade::render("
             <div @class([
                 'whitespace-nowrap',
-                'text-base-content/30 cursor-not-allowed' => '$this->disabled'
+                'text-base-content/30 cursor-not-allowed' => '{$this->disabled}'
                 ])>
                 {$fromLabel}
             </div>

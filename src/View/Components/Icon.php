@@ -16,7 +16,7 @@ class Icon extends Component
         public string $name,
         public ?string $label = null
     ) {
-        $this->uuid = "mary" . md5(serialize($this));
+        $this->uuid = 'mary' . md5(serialize($this));
     }
 
     public function icon(): string|Stringable

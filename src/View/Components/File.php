@@ -16,10 +16,10 @@ class File extends Component
         public ?string $hintClass = 'fieldset-label',
         public ?bool $hideProgress = false,
         public ?bool $cropAfterChange = false,
-        public ?string $changeText = "Change",
-        public ?string $cropTitleText = "Crop image",
-        public ?string $cropCancelText = "Cancel",
-        public ?string $cropSaveText = "Crop",
+        public ?string $changeText = 'Change',
+        public ?string $cropTitleText = 'Crop image',
+        public ?string $cropCancelText = 'Cancel',
+        public ?string $cropSaveText = 'Crop',
         public ?array $cropConfig = [],
         public ?string $cropMimeType = "image/png",
 
@@ -30,7 +30,7 @@ class File extends Component
         public ?bool $firstErrorOnly = false,
 
     ) {
-        $this->uuid = "mary" . md5(serialize($this));
+        $this->uuid = 'mary' . md5(serialize($this));
     }
 
     public function modelName(): ?string
@@ -48,7 +48,7 @@ class File extends Component
         return json_encode(array_merge([
             'autoCropArea' => 1,
             'viewMode' => 1,
-            'dragMode' => 'move'
+            'dragMode' => 'move',
         ], $this->cropConfig));
     }
 
