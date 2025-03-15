@@ -34,7 +34,7 @@ class Choices extends Component
         public ?string $optionAvatar = 'avatar',
         public ?bool $valuesAsString = false,
         public ?string $height = 'max-h-64',
-        public Collection|array $options = new Collection(),
+        public Collection|array $options = new Collection,
         public ?string $noResultText = 'No results found.',
         // Validations
         public ?string $errorField = null,
@@ -47,10 +47,10 @@ class Choices extends Component
         public mixed $prepend = null,
         public mixed $append = null
     ) {
-        $this->uuid = "mary" . md5(serialize($this));
+        $this->uuid = 'mary' . md5(serialize($this));
 
         if (($this->allowAll || $this->compact) && ($this->single || $this->searchable)) {
-            throw new Exception("`allow-all` and `compact` does not work combined with `single` or `searchable`.");
+            throw new Exception('`allow-all` and `compact` does not work combined with `single` or `searchable`.');
         }
     }
 
@@ -84,10 +84,10 @@ class Choices extends Component
         $value = data_get($option, $this->optionValue);
 
         if ($this->valuesAsString) {
-            return "'$value'";
+            return "'{$value}'";
         }
 
-        return is_numeric($value) && ! str($value)->startsWith('0') ? $value : "'$value'";
+        return is_numeric($value) && ! str($value)->startsWith('0') ? $value : "'{$value}'";
     }
 
     public function render(): View|Closure|string

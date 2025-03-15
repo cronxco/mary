@@ -23,7 +23,7 @@ class Toggle extends Component
         public ?bool $omitError = false,
         public ?bool $firstErrorOnly = false,
     ) {
-        $this->uuid = "mary" . md5(serialize($this)) . $id;
+        $this->uuid = 'mary' . md5(serialize($this)) . $id;
     }
 
     public function modelName(): ?string
@@ -40,7 +40,7 @@ class Toggle extends Component
     {
         return <<<'HTML'
                 <div>
-                    <label for="{{ $uuid }}" class="flex items-center gap-3 cursor-pointer font-semibold">
+                    <label for="{{ $uuid }}" class="flex items-center gap-3 cursor-pointer">
 
                         @if($right)
                             <span @class(["flex-1" => !$tight])>

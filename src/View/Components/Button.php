@@ -28,7 +28,7 @@ class Button extends Component
         public ?string $tooltipRight = null,
         public ?string $tooltipBottom = null,
     ) {
-        $this->uuid = "mary" . md5(serialize($this));
+        $this->uuid = 'mary' . md5(serialize($this));
         $this->tooltip = $this->tooltip ?? $this->tooltipLeft ?? $this->tooltipRight ?? $this->tooltipBottom;
         $this->tooltipPosition = $this->tooltipLeft ? 'lg:tooltip-left' : ($this->tooltipRight ? 'lg:tooltip-right' : ($this->tooltipBottom ? 'lg:tooltip-bottom' : 'lg:tooltip-top'));
     }
@@ -40,6 +40,11 @@ class Button extends Component
         }
 
         return $this->spinner;
+    }
+
+    public function spotlight()
+    {
+        $this->dispatch('toggle-spotlight');
     }
 
     public function render(): View|Closure|string

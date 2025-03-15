@@ -17,7 +17,7 @@ class Header extends Component
         public ?bool $separator = false,
         public ?string $progressIndicator = null,
         public ?bool $withAnchor = false,
-        public ?string $size = 'text-4xl',
+        public ?string $size = 'text-3xl',
 
         // Slots
         public mixed $middle = null,
@@ -41,7 +41,7 @@ class Header extends Component
                 <div id="{{ $anchor }}" {{ $attributes->class(["mb-10", "mary-header-anchor" => $withAnchor]) }}>
                     <div class="flex flex-wrap gap-5 justify-between items-center">
                         <div>
-                            <div @class(["$size font-extrabold", is_string($title) ? '' : $title?->attributes->get('class') ]) >
+                            <span @class(["$size font-extrabold font-display", is_string($title) ? '' : $title?->attributes->get('class') ]) >
                                 @if($withAnchor)
                                     <a href="#{{ $anchor }}">
                                 @endif
@@ -51,12 +51,12 @@ class Header extends Component
                                 @if($withAnchor)
                                     </a>
                                 @endif
-                            </div>
+                            </span>
 
                             @if($subtitle)
-                                <div @class(["text-gray-500 text-sm mt-1", is_string($subtitle) ? '' : $subtitle?->attributes->get('class') ]) >
+                                <span @class(["text-base-content/75 text-xl block md:inline font-thin", is_string($subtitle) ? '' : $subtitle?->attributes->get('class') ]) >
                                     {{ $subtitle }}
-                                </div>
+                                </span>
                             @endif
                         </div>
 
@@ -67,7 +67,7 @@ class Header extends Component
                                 </div>
                             </div>
                         @endif
-                        
+
                         <div @class(["flex items-center gap-3", is_string($actions) ? '' : $actions?->attributes->get('class') ]) >
                             {{ $actions}}
                         </div>

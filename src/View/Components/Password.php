@@ -8,7 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 /**
- * This component is a copy of Input::class modified with a 
+ * This component is a copy of Input::class modified with a
  * input type toggle between 'password' and 'text'.
  */
 class Password extends Component
@@ -40,16 +40,16 @@ class Password extends Component
         public ?bool $omitError = false,
         public ?bool $firstErrorOnly = false,
     ) {
-        $this->uuid = "mary" . md5(serialize($this));
+        $this->uuid = 'mary' . md5(serialize($this));
 
         // Cannot use a left icon when password toggle should be shown on the left side.
-        if (($this->icon && !$this->right) && !$this->onlyPassword) {
-            throw new Exception("Cannot use `icon` without providing `right` or `onlyPassword`.");
+        if (($this->icon && ! $this->right) && ! $this->onlyPassword) {
+            throw new Exception('Cannot use `icon` without providing `right` or `onlyPassword`.');
         }
 
         // Cannot use a right icon when password toggle should be shown on the right side.
-        if (($this->iconRight && $this->right) && !$this->onlyPassword) {
-            throw new Exception("Cannot use `iconRight` when providing `right` and not providing `onlyPassword`.");
+        if (($this->iconRight && $this->right) && ! $this->onlyPassword) {
+            throw new Exception('Cannot use `iconRight` when providing `right` and not providing `onlyPassword`.');
         }
     }
 
@@ -65,12 +65,12 @@ class Password extends Component
 
     public function placeToggleLeft(): bool
     {
-        return (!$this->icon && !$this->right) && !$this->onlyPassword;
+        return (! $this->icon && ! $this->right) && ! $this->onlyPassword;
     }
 
     public function placeToggleRight(): bool
     {
-        return (!$this->iconRight && $this->right) && !$this->onlyPassword;
+        return (! $this->iconRight && $this->right) && ! $this->onlyPassword;
     }
 
     public function render(): View|Closure|string
@@ -144,8 +144,8 @@ class Password extends Component
                         <x-mary-icon :name="$icon" class="absolute top-1/2 -translate-y-1/2 start-3 text-gray-400 pointer-events-none" />
                     @elseif($placeToggleLeft())
                         <x-mary-button x-on:click="hidden = !hidden" class="btn-ghost btn-sm btn-circle p-0 absolute top-1/2 -translate-y-1/2 start-1.5 text-gray-400 no-animation active:focus:-translate-y-1/2">
-                            <x-mary-icon name="{{ $passwordIcon }}" x-show="hidden" /> 
-                            <x-mary-icon name="{{ $passwordVisibleIcon }}" x-show="!hidden" x-cloak class="text-primary" /> 
+                            <x-mary-icon name="{{ $passwordIcon }}" x-show="hidden" />
+                            <x-mary-icon name="{{ $passwordVisibleIcon }}" x-show="!hidden" x-cloak class="text-primary" />
                         </x-mary-button>
                     @endif
 
@@ -159,8 +159,8 @@ class Password extends Component
                         <x-mary-icon :name="$iconRight" @class(["absolute top-1/2 end-3 -translate-y-1/2 text-gray-400 pointer-events-none", "!end-10" => $clearable]) />
                     @elseif($placeToggleRight())
                         <x-mary-button x-on:click="hidden = !hidden" @class(["btn-ghost btn-sm btn-circle p-0 absolute top-1/2 -translate-y-1/2 end-1.5 text-gray-400 no-animation active:focus:-translate-y-1/2", "!end-9" => $clearable])>
-                            <x-mary-icon name="{{ $passwordIcon }}" x-show="hidden" /> 
-                            <x-mary-icon name="{{ $passwordVisibleIcon }}" x-show="!hidden" x-cloak class="text-primary" /> 
+                            <x-mary-icon name="{{ $passwordIcon }}" x-show="hidden" />
+                            <x-mary-icon name="{{ $passwordVisibleIcon }}" x-show="!hidden" x-cloak class="text-primary" />
                         </x-mary-button>
                     @endif
 

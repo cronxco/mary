@@ -20,7 +20,7 @@ class Calendar extends Component
         public ?array $config = [],
         public ?array $events = [],
     ) {
-        $this->uuid = "mary" . md5(serialize($this));
+        $this->uuid = 'mary' . md5(serialize($this));
     }
 
     public function setup(): string
@@ -83,7 +83,7 @@ class Calendar extends Component
                 return [
                     $date => [
                         'modifier' => $event['css'],
-                        'html' => $buffer[$date]
+                        'html' => $buffer[$date],
                     ],
                 ];
             });

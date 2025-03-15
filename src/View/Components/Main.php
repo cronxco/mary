@@ -19,7 +19,7 @@ class Main extends Component
         public ?bool $fullWidth = false,
         public ?bool $withNav = false,
         public ?string $collapseText = 'Collapse',
-        public ?string $collapseIcon = 'o-bars-3-bottom-right',
+        public ?string $collapseIcon = 'fas.ellipsis',
         public ?bool $collapsible = false,
     ) {
         $this->url = route('mary.toogle-sidebar', absolute: false);
@@ -54,7 +54,7 @@ class Main extends Component
                                 }"
 
                                 @menu-sub-clicked="if(collapsed) { toggle() }"
-                                @class(["drawer-side z-20 lg:z-auto", "top-0 lg:top-[73px] lg:h-[calc(100vh-73px)]" => $withNav])
+                                @class(["drawer-side z-20 lg:z-auto", "top-0 lg:top-[65px] lg:h-[calc(100vh-65px)]" => $withNav])
                             >
                                 <label for="{{ $sidebar?->attributes['drawer'] }}" aria-label="close sidebar" class="drawer-overlay"></label>
 
@@ -62,14 +62,14 @@ class Main extends Component
                                 <div
                                     :class="collapsed
                                         ? '!w-[70px] [&>*_summary::after]:!hidden [&_.mary-hideable]:!hidden [&_.display-when-collapsed]:!block [&_.hidden-when-collapsed]:!hidden'
-                                        : '!w-[270px] [&>*_summary::after]:!block [&_.mary-hideable]:!block [&_.hidden-when-collapsed]:!block [&_.display-when-collapsed]:!hidden'"
+                                        : '!w-[240px] [&>*_summary::after]:!block [&_.mary-hideable]:!block [&_.hidden-when-collapsed]:!block [&_.display-when-collapsed]:!hidden'"
 
                                     {{
                                         $sidebar->attributes->class([
                                             "flex flex-col !transition-all !duration-100 ease-out overflow-x-hidden overflow-y-auto h-screen",
                                             "w-[70px] [&>*_summary::after]:hidden [&_.mary-hideable]:hidden [&_.display-when-collapsed]:block [&_.hidden-when-collapsed]:hidden" => session('mary-sidebar-collapsed') == 'true',
-                                            "w-[270px] [&>*_summary::after]:block [&_.mary-hideable]:block [&_.hidden-when-collapsed]:block [&_.display-when-collapsed]:hidden" => session('mary-sidebar-collapsed') != 'true',
-                                            "lg:h-[calc(100vh-73px)]" => $withNav
+                                            "w-[240px] [&>*_summary::after]:block [&_.mary-hideable]:block [&_.hidden-when-collapsed]:block [&_.display-when-collapsed]:hidden" => session('mary-sidebar-collapsed') != 'true',
+                                            "lg:h-[calc(100vh-65px)]" => $withNav
                                         ])
                                      }}
                                 >
@@ -79,11 +79,15 @@ class Main extends Component
 
                                      <!-- SIDEBAR COLLAPSE -->
                                     @if($sidebar->attributes['collapsible'])
-                                    <x-mary-menu class="hidden !bg-inherit lg:block">
+                                    <x-mary-menu class="!bg-inherit">
+                                        <span class="text-accent"><x-mary-menu-item
+                                        icon="fas.code-branch" link="/admin">
+                                            @version
+                                        </x-mary-menu-item></span>
                                         <x-mary-menu-item
                                             @click="toggle"
                                             icon="{{ $sidebar->attributes['collapse-icon'] ?? $collapseIcon }}"
-                                            title="{{ $sidebar->attributes['collapse-text'] ?? $collapseText }}" />
+                                            title="{{ $sidebar->attributes['collapse-text'] ?? $collapseText }}" class="hidden lg:flex" />
                                     </x-mary-menu>
                                     @endif
                                 </div>

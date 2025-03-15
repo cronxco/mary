@@ -17,7 +17,7 @@ class Pin extends Component
         public ?string $hideType = "disc",
 
     ) {
-        $this->uuid = "mary" . md5(serialize($this));
+        $this->uuid = 'mary' . md5(serialize($this));
     }
 
     public function modelName(): ?string

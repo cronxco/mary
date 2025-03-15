@@ -32,7 +32,7 @@ class Input extends Component
         public ?bool $omitError = false,
         public ?bool $firstErrorOnly = false,
     ) {
-        $this->uuid = "mary" . md5(serialize($this));
+        $this->uuid = 'mary' . md5(serialize($this));
     }
 
     public function modelName(): ?string
@@ -50,8 +50,8 @@ class Input extends Component
         return json_encode([
             'init' => true,
             'maskOpts' => [
-                'locales' => $this->locale
-            ]
+                'locales' => $this->locale,
+            ],
         ]);
     }
 

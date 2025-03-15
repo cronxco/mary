@@ -23,8 +23,9 @@ class Signature extends Component
         public ?string $errorField = null,
         public ?bool $omitError = false,
         public ?bool $firstErrorOnly = false,
+
     ) {
-        $this->uuid = "mary" . md5(serialize($this));
+        $this->uuid = 'mary' . md5(serialize($this));
     }
 
     public function modelName(): ?string

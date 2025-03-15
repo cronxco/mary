@@ -14,8 +14,11 @@ class Avatar extends Component
      * @param  ?string  $image  The URL of the avatar image.
      * @param  ?string  $placeholder  The placeholder of the avatar.
      * @param  ?string  $title  The title text displayed beside the avatar.
+     *
      * @slot  ?string  $title  The title text displayed beside the avatar.
+     *
      * @param  ?string  $subtitle  The subtitle text displayed beside the avatar.
+     *
      * @slot  ?string  $subtitle The subtitle text displayed beside the avatar.
      */
     public function __construct(
@@ -27,7 +30,7 @@ class Avatar extends Component
         public ?string $subtitle = null
 
     ) {
-        $this->uuid = "mary" . md5(serialize($this));
+        $this->uuid = 'mary' . md5(serialize($this));
     }
 
     public function render(): View|Closure|string
