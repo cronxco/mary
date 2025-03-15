@@ -281,7 +281,7 @@ class Table extends Component
                         }}
                     >
                         <!-- HEADERS -->
-                        <thead @class(["text-black dark:text-gray-200", "hidden" => $noHeaders])>
+                        <thead @class(["text-base-content", "hidden" => $noHeaders])>
                             <tr x-ref="headers">
                                 <!-- CHECKALL -->
                                 @if($selectable)
@@ -349,7 +349,7 @@ class Table extends Component
                                             <input
                                                 id="checkbox-{{ $uuid }}-{{ $k }}"
                                                 type="checkbox"
-                                                class="checkbox checkbox-sm checkbox-primary"
+                                                class="checkbox checkbox-sm"
                                                 value="{{ data_get($row, $selectableKey) }}"
                                                 x-model{{ $selectableModifier() }}="selection"
                                                 @click="toggleCheck($el.checked, {{ json_encode($row) }})" />
@@ -428,12 +428,12 @@ class Table extends Component
 
                     @if(count($rows) === 0)
                         @if($showEmptyText)
-                            <div class="text-center py-4 text-gray-500 dark:text-gray-400">
+                            <div class="text-center py-4 text-base-content/50">
                                 {{ $emptyText }}
                             </div>
                         @endif
                         @if($empty)
-                            <div class="text-center py-4 text-gray-500 dark:text-gray-400">
+                            <div class="text-center py-4 text-base-content/50">
                                 {{ $empty }}
                             </div>
                         @endif

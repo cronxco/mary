@@ -27,7 +27,7 @@ class Main extends Component
 
     public function render(): View|Closure|string
     {
-        return <<<'HTML'
+        return <<<'BLADE'
                  <main @class(["w-full mx-auto", "max-w-screen-2xl" => !$fullWidth])>
                     <div @class([
                         "drawer lg:drawer-open",
@@ -36,11 +36,11 @@ class Main extends Component
                     ])>
                         <input id="{{ $sidebar?->attributes['drawer'] }}" type="checkbox" class="drawer-toggle" />
                         <div {{ $content->attributes->class(["drawer-content w-full mx-auto p-5 lg:px-10 lg:py-5"]) }}>
-                            <!-- MAIN CONTENT -->
+                            {{-- MAIN CONTENT  --}}
                             {{ $content }}
                         </div>
 
-                        <!-- SIDEBAR -->
+                        {{-- SIDEBAR  --}}
                         @if($sidebar)
                             <div
                                 x-data="{
@@ -58,9 +58,10 @@ class Main extends Component
                             >
                                 <label for="{{ $sidebar?->attributes['drawer'] }}" aria-label="close sidebar" class="drawer-overlay"></label>
 
-                                <!-- SIDEBAR CONTENT -->
+                                {{-- SIDEBAR CONTENT  --}}
                                 <div
                                     :class="collapsed
+
                                         ? '!w-[70px] [&>*_summary::after]:!hidden [&_.mary-hideable]:!hidden [&_.display-when-collapsed]:!block [&_.hidden-when-collapsed]:!hidden'
                                         : '!w-[240px] [&>*_summary::after]:!block [&_.mary-hideable]:!block [&_.hidden-when-collapsed]:!block [&_.display-when-collapsed]:!hidden'"
 
@@ -77,7 +78,7 @@ class Main extends Component
                                         {{ $sidebar }}
                                     </div>
 
-                                     <!-- SIDEBAR COLLAPSE -->
+                                     {{-- SIDEBAR COLLAPSE  --}}
                                     @if($sidebar->attributes['collapsible'])
                                     <x-mary-menu class="!bg-inherit">
                                         <span class="text-accent"><x-mary-menu-item
@@ -93,17 +94,17 @@ class Main extends Component
                                 </div>
                             </div>
                         @endif
-                        <!-- END SIDEBAR-->
+                        {{-- END SIDEBAR --}}
 
                     </div>
                 </main>
 
-                 <!-- FOOTER -->
+                 {{-- FOOTER  --}}
                  @if($footer)
                     <footer {{ $footer?->attributes->class(["mx-auto w-full", "max-w-screen-2xl" => !$fullWidth ]) }}>
                         {{ $footer }}
                     </footer>
                 @endif
-                HTML;
+                BLADE;
     }
 }
