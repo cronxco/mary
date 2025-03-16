@@ -182,6 +182,7 @@ class MaryServiceProvider extends ServiceProvider
         Blade::component($prefix . 'spark-event-summary', SparkEventSummary::class);
         Blade::component($prefix . 'spark-object-type', SparkObjectType::class);
         Blade::component($prefix . 'spark-spotlight-value', SparkSpotlightValue::class);
+        Blade::component($prefix . 'spark-tag', SparkTag::class);
         Blade::component($prefix . 'spotlight', Spotlight::class);
         Blade::component($prefix . 'stat', Stat::class);
         Blade::component($prefix . 'steps', Steps::class);
