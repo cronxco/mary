@@ -25,7 +25,7 @@ class Popover extends Component
     public function render(): View|Closure|string
     {
         return <<<'HTML'
-                <div
+                <span
                     x-cloak
                     x-data="{
                             open: false,
@@ -40,14 +40,14 @@ class Popover extends Component
                         }"
                 >
                   <!-- TRIGGER -->
-                  <div
+                  <span
                     x-ref="myTrigger"
                     @mouseover="show()"
                     @mouseout="hide()"
                     {{ $trigger->attributes->class(["w-fit cursor-pointer"]) }}
                   >
                     {{ $trigger }}
-                  </div>
+                  </span>
 
                   <!-- CONTENT -->
                   <div
@@ -59,7 +59,7 @@ class Popover extends Component
                   >
                     {{ $content }}
                   </div>
-                </div>
+                  </span>
             HTML;
     }
 }
