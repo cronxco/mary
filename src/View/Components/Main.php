@@ -19,7 +19,7 @@ class Main extends Component
         public ?bool $fullWidth = false,
         public ?bool $withNav = false,
         public ?string $versionRoute = '/admin',
-        public ?string $collapseIcon = 'fas.code-branch',
+        public ?string $versionIcon = 'fas.code-branch',
         public ?string $collapseText = 'Collapse',
         public ?string $collapseIcon = 'o-bars-3-bottom-right',
         public ?bool $collapsible = false,
