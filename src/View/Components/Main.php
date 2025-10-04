@@ -18,6 +18,8 @@ class Main extends Component
         public mixed $footer = null,
         public ?bool $fullWidth = false,
         public ?bool $withNav = false,
+        public ?string $versionRoute = '/admin',
+        public ?string $collapseIcon = 'fas.code-branch',
         public ?string $collapseText = 'Collapse',
         public ?string $collapseIcon = 'o-bars-3-bottom-right',
         public ?bool $collapsible = false,
@@ -77,9 +79,18 @@ class Main extends Component
                                         {{ $sidebar }}
                                     </div>
 
-                                     {{-- SIDEBAR COLLAPSE  --}}
+                                    {{-- SIDEBAR COLLAPSE  --}}
+                                    @if($sidebar->attributes['version'])
+                                    <x-mary-menu class="p-1">
+                                        <x-mary-menu-item icon="{{ $sidebar->attributes['version-icon'] ?? $versionIcon }}" link="{{ $sidebar->attributes['version-route'] ?? $versionRoute }}">
+                                            <x-slot:title>
+                                                @version
+                                            </x-slot:title>
+                                        </x-mary-menu-item>
+                                    </x-mary-menu>
+                                    @endif
                                     @if($sidebar->attributes['collapsible'])
-                                    <x-mary-menu class="hidden lg:block">
+                                    <x-mary-menu class="hidden lg:block p-1">
                                         <x-mary-menu-item
                                             @click="toggle"
                                             icon="{{ $sidebar->attributes['collapse-icon'] ?? $collapseIcon }}"
