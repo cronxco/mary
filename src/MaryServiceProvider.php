@@ -106,6 +106,7 @@ class MaryServiceProvider extends ServiceProvider
         // because they are used inside some Mary's components itself.
         Blade::component('mary-button', Button::class);
         Blade::component('mary-card', Card::class);
+        Blade::component('mary-badge', Badge::class);
         Blade::component('mary-icon', Icon::class);
         Blade::component('mary-input', Input::class);
         Blade::component('mary-list-item', ListItem::class);
@@ -114,6 +115,7 @@ class MaryServiceProvider extends ServiceProvider
         Blade::component('mary-menu-item', MenuItem::class);
         Blade::component('mary-header', Header::class);
         Blade::component('mary-pagination', Pagination::class);
+        Blade::component('mary-popover', Popover::class);
 
         $prefix = config('mary.prefix');
 

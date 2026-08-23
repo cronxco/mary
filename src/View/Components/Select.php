@@ -27,6 +27,12 @@ class Select extends Component
         public ?string $optionLabel = 'name',
         public Collection|array $options = new Collection(),
 
+	    // Popover
+        public ?string $popover = null,
+        public ?string $popoverIcon = "o-question-mark-circle",
+        public ?string $popoverTriggerClass = '',
+        public ?string $popoverContentClass = '',
+
         // Slots
         public mixed $prepend = null,
         public mixed $append = null,
@@ -68,13 +74,31 @@ class Select extends Component
                             @if($attributes->get('required'))
                                 <span class="text-error">*</span>
                             @endif
+
+                            {{-- INPUT POPOVER --}}
+                            @if($popover)
+                                <x-mary-popover offset="5" position="top-start">
+                                    <x-slot:trigger class="{{ $popoverTriggerClass }}">
+                                        <x-mary-icon :name="$popoverIcon" class="w-4 h-4 opacity-40 mb-0.5" />
+                                    </x-slot:trigger>
+                                    <x-slot:content class="{{ $popoverContentClass }}">
+                                        {{ $popover }}
+                                    </x-slot:content>
+                                </x-mary-popover>
+                            @endif
                         </legend>
                     @endif
 
                     <label @class(["floating-label" => $label && $inline])>
                         {{-- FLOATING LABEL--}}
                         @if ($label && $inline)
-                            <span class="font-semibold">{{ $label }}</span>
+                            <span class="font-semibold">
+                                {{ $label }}
+
+                                @if($attributes->get('required'))
+                                    <span class="text-error">*</span>
+                                @endif
+                            </span>
                         @endif
 
                         <div @class(["w-full", "join" => $prepend || $append])>
@@ -102,7 +126,7 @@ class Select extends Component
 
                                 {{-- ICON LEFT --}}
                                 @if($icon)
-                                    <x-mary-icon :name="$icon" class="pointer-events-none w-4 h-4 -ml-1 opacity-40" />
+                                    <x-mary-icon :name="$icon" class="pointer-events-none w-4 h-4 -ms-1 opacity-40" />
                                 @endif
 
                                 {{-- SELECT --}}

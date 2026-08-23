@@ -22,6 +22,12 @@ class Tags extends Component
         public ?string $prefix = null,
         public ?string $suffix = null,
 
+        // Popover
+        public ?string $popover = null,
+        public ?string $popoverIcon = "o-question-mark-circle",
+        public ?string $popoverTriggerClass = '',
+        public ?string $popoverContentClass = '',
+
         // Slots
         public mixed $prepend = null,
         public mixed $append = null,
@@ -139,13 +145,31 @@ class Tags extends Component
                             @if($attributes->get('required'))
                                 <span class="text-error">*</span>
                             @endif
+
+                            {{-- INPUT POPOVER --}}
+                            @if($popover)
+                                <x-mary-popover offset="5" position="top-start">
+                                    <x-slot:trigger class="{{ $popoverTriggerClass }}">
+                                        <x-mary-icon :name="$popoverIcon" class="w-4 h-4 opacity-40 mb-0.5" />
+                                    </x-slot:trigger>
+                                    <x-slot:content class="{{ $popoverContentClass }}">
+                                        {{ $popover }}
+                                    </x-slot:content>
+                                </x-mary-popover>
+                            @endif
                         </legend>
                     @endif
 
                     <label @class(["floating-label" => $label && $inline])>
                         {{-- FLOATING LABEL--}}
                         @if ($label && $inline)
-                            <span class="font-semibold">{{ $label }}</span>
+                            <span class="font-semibold">
+                                {{ $label }}
+
+                                @if($attributes->get('required'))
+                                    <span class="text-error">*</span>
+                                @endif
+                            </span>
                         @endif
 
                         <div @class(["w-full", "join" => $prepend || $append])>
@@ -164,7 +188,7 @@ class Tags extends Component
 
                                 {{
                                     $attributes->whereStartsWith('class')->class([
-                                        "input w-full h-fit pl-2.5",
+                                        "input w-full h-fit ps-2.5",
                                         "join-item" => $prepend || $append,
                                         "border-dashed" => $attributes->has("readonly") && $attributes->get("readonly") == true,
                                         "!input-error" => $errorFieldName() && $errors->has($errorFieldName()) && !$omitError
@@ -250,12 +274,21 @@ class Tags extends Component
                         @endforeach
                     @endif
 
+                    {{-- MULTIPLE --}}
+                    @error($modelName().'.*')
+                        @foreach ($errors->get($modelName().'.*') as $fieldErrors)
+                            @foreach ($fieldErrors as $message)
+                                <div class="text-error" x-classes="text-error">{{ $message }}</div>
+                            @endforeach
+                        @endforeach
+                    @enderror
+
                     {{-- HINT --}}
                     @if($hint)
                         <div class="{{ $hintClass }}" x-classes="fieldset-label">{{ $hint }}</div>
                     @endif
                 </fieldset>
             </div>
-        BLADE;
+            BLADE;
     }
 }
